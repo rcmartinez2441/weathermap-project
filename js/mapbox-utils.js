@@ -1,0 +1,18 @@
+// OVERALL BASIC  LAYOUT
+
+//SET GLOBAL VARIABLES
+let map = createMapbox();
+let mapboxKey = MAPBOX_TOKEN;
+
+mapboxgl.accessToken = mapboxKey
+
+//CREATE MAP AND ADD TO CORRECT DIV
+function createMapbox() {
+
+}
+
+//CREATE MARKER FUNCTION
+
+//CREATE GEOCODER AND ADD TO CORRECT DIV
+
+// CREATE REVERSE GEOCODER USING AJAX
