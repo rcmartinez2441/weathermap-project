@@ -19,15 +19,19 @@
         <title>Weathermap Project</title>
     </head>
     <body>
-        <!--*** Header Container ***-->
-
-        <!--*** Forecast Container ***-->
-
-        <!--*** Mapbox Container ***-->
-
-        <!--*************************************************************************************************-->
-        <!--*** jquery file***-->
-        <script src="libraries/jquery-2.2.4.js"></script>
+        <div>
+            <!--*** Header Container with search bar ***-->
+            <div id="header-container"></div>
+            <!--*** Forecast Container ***-->
+            <div id="forecast-container"></div>
+            <!--*** Mapbox Container ***-->
+            <div id="map"></div>
+        </div>
+        <!--******************************* SCRIPTS **********************************************************-->
+        <!--*** my jquery file***-->
+        <!--*** May not need this one since bootstrap is using a new verion of boostrap below-->
+        <!--        <script src="libraries/jquery-2.2.4.js"></script> -->
+        <!-- =================================================================================-->
         <!--*** bootstrap CDN ***-->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
                 integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -42,7 +46,10 @@
         <!--*** GEOCODER CDN-->
         <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
         <!--*** my mapbox-utils.js ***-->
+        <script src="js/mapbox-utils.js"></script>
         <!--*** my weathermap-utils.js ***-->
-        <!--*** ***-->
+        <script src="js/weathermap-utils.js"></script>
+        <!--*** dom-weather-loader.js ***-->
+        <script src="js/dom-weather-loader.js"></script>
     </body>
 </html>
