@@ -43,14 +43,15 @@ function createMarker(coordinates = centerCoordinates) {
 
 function userClicksOnMapEvent (){
 	map.on('click',function (data){
-		let lonlat = [data.lngLat.lng, data.lngLat.lat];
-		currentCoordinates = lonlat
-		marker.setLngLat(lonlat)
+		let lonLat = [data.lngLat.lng, data.lngLat.lat];
+		currentCoordinates = lonLat
+		marker.setLngLat(lonLat)
 			.addTo(map);
 		//CALL WEATHERMAP FUNCTION HERE AFTERWARDS
+		console.log('User Clicked Data')
 		console.log(data);
-		reverseGeocode(lonlat);
-		weatherMapUtils(lonlat);
+		reverseGeocode(lonLat);
+		weatherMapUtils(lonLat);
 
 	})
 }
@@ -74,6 +75,8 @@ function geoCoderEventOnResult (geoCoderResult) {
 		let coordinates = data.result.geometry.coordinates
 		marker.setLngLat(coordinates)
 			.addTo(map);
+		console.log('Geocoder Data:')
+		console.log(data)
 		weatherMapUtils(coordinates);
 	})
 }
@@ -83,8 +86,8 @@ function reverseGeocode (point){
 	$.ajax({
 		url: `https://api.mapbox.com/geocoding/v5/mapbox.places/${point[0]},${point[1]}.json?access_token=${mapboxgl.accessToken}`,
 		success: function (data) {
+			console.log('Reverse Geocode Data:')
 			console.log(data);
-
 		}
 	});
 }
