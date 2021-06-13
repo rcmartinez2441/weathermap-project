@@ -11,34 +11,22 @@ function weatherMapUtils(coordinatesGiven) {
 			units: 'imperial'
 		},
 		success: function (data) {
-			console.log('AJAX WAS SUCCESSFUL')
-			console.log('Weatherbox Data:')
+			console.log('WeatherMap Data')
 			console.log(data);
-			filterData(data)
+			filterWeatherData(data);
 
 		}
 	});
 }
 
-function filterData (weatherData) {
+function filterWeatherData (weatherData) {
 	//TO Narrow down to forecast results:
 	// weatherData.list
 	let weatherList = weatherData.list;
 	let fiveDayForecast = [
 		//Index Intervals of 7 will give you daily forcast per 3 hours
 		//Weather Indexes needed for 5 day forecast
-		// Current Day [0]
-		{
-			date: weatherList[0].dt_txt,
-			highTemp: weatherList[0].main.temp_max,
-			lowTemp: weatherList[0].main.temp_min,
-			tempIcon: weatherList[0].weather[0].icon,
-			tempDescription: weatherList[0].weather[0].description,
-			humidity: weatherList[0].main.humidity,
-			wind: weatherList[0].wind.speed,
-			pressure:weatherList[0].main.pressure
-		},
-		// 2nd Day [5]
+		//Day 1 [5]
 		{
 			date: weatherList[5].dt_txt,
 			highTemp: weatherList[5].main.temp_max,
@@ -49,7 +37,7 @@ function filterData (weatherData) {
 			wind: weatherList[5].wind.speed,
 			pressure:weatherList[5].main.pressure
 		},
-		// 3rd Day [13]
+		// 2nd Day [13]
 		{
 			date: weatherList[13].dt_txt,
 			highTemp: weatherList[13].main.temp_max,
@@ -60,7 +48,7 @@ function filterData (weatherData) {
 			wind: weatherList[13].wind.speed,
 			pressure:weatherList[13].main.pressure
 		},
-		//4th Day [21]
+		// 3rd Day [21]
 		{
 			date: weatherList[21].dt_txt,
 			highTemp: weatherList[21].main.temp_max,
@@ -71,7 +59,7 @@ function filterData (weatherData) {
 			wind: weatherList[21].wind.speed,
 			pressure:weatherList[21].main.pressure
 		},
-		//5th Day [29]
+		//4th Day [29]
 		{
 			date: weatherList[29].dt_txt,
 			highTemp: weatherList[29].main.temp_max,
@@ -81,6 +69,17 @@ function filterData (weatherData) {
 			humidity: weatherList[29].main.humidity,
 			wind: weatherList[29].wind.speed,
 			pressure:weatherList[29].main.pressure
+		},
+		//5th Day [37]
+		{
+			date: weatherList[37].dt_txt,
+			highTemp: weatherList[37].main.temp_max,
+			lowTemp: weatherList[37].main.temp_min,
+			tempIcon: weatherList[37].weather[0].icon,
+			tempDescription: weatherList[37].weather[0].description,
+			humidity: weatherList[37].main.humidity,
+			wind: weatherList[37].wind.speed,
+			pressure:weatherList[37].main.pressure
 		}
 	]
 

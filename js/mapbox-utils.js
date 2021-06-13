@@ -6,8 +6,11 @@
 let mapboxKey = MAPBOX_TOKEN;
 mapboxgl.accessToken = mapboxKey
 
-let map = createMapbox();
+//Starting Coordinates
 let centerCoordinates = [-96.283496, 37.230328];
+//Creates Map and stores in variable
+let map = createMapbox();
+//Creates Marker
 let marker = createMarker();
 let currentCoordinates;
 //Create Geocoder and store in variable
@@ -20,14 +23,12 @@ geoCoderEventOnResult(geoCoder);
 //Adding Marker Event so click will give you data
 userClicksOnMapEvent(marker)
 
-
-
 //CREATE MAP AND ADD TO CORRECT DIV
 function createMapbox() {
 	return new mapboxgl.Map({
 		container: 'map', // container ID
 		style: 'mapbox://styles/mapbox/dark-v10', // style URL
-		center: [-96.283496, 37.230328], // starting position [lng, lat]
+		center: centerCoordinates, // starting position [lng, lat]
 		zoom: 3.5// starting zoom
 	});
 }
@@ -48,8 +49,6 @@ function userClicksOnMapEvent (){
 		marker.setLngLat(lonLat)
 			.addTo(map);
 		//CALL WEATHERMAP FUNCTION HERE AFTERWARDS
-		console.log('User Clicked Data')
-		console.log(data);
 		reverseGeocode(lonLat);
 		weatherMapUtils(lonLat);
 
@@ -73,11 +72,16 @@ function addGeocoder() {
 function geoCoderEventOnResult (geoCoderResult) {
 	geoCoderResult.on('result',function (data){
 		let coordinates = data.result.geometry.coordinates
+
 		marker.setLngLat(coordinates)
 			.addTo(map);
-		console.log('Geocoder Data:')
-		console.log(data)
+
 		weatherMapUtils(coordinates);
+		//Add Place Name to HTML using Geocode Data
+		let locationName = {
+			location: data.result.place_name
+		}
+		addLocationNameDiv(locationName);
 	})
 }
 
@@ -88,6 +92,10 @@ function reverseGeocode (point){
 		success: function (data) {
 			console.log('Reverse Geocode Data:')
 			console.log(data);
+			let locationName = {
+				location: data.features[0].place_name
+			}
+			addLocationNameDiv(locationName);
 		}
 	});
 }
