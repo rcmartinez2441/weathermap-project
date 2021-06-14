@@ -1,7 +1,5 @@
 // OVERALL BASIC  LAYOUT
 function weatherMapUtils(coordinatesGiven) {
-	let fiveDayForecast;
-	let currentForecast;
 	$.ajax({
 		url: `http://api.openweathermap.org/data/2.5/forecast`,
 		type: 'GET',
@@ -12,8 +10,6 @@ function weatherMapUtils(coordinatesGiven) {
 			units: 'imperial'
 		},
 		success: function (data) {
-			console.log('WeatherMap Data')
-			console.log(data);
 			filterWeatherData(data);
 		}
 	});
@@ -31,8 +27,6 @@ function currentWeather(coordinatesGiven) {
 			units: 'imperial'
 		},
 		success: function (data) {
-			console.log('Current WeatherMap Data')
-			console.log(data);
 			filterCurrentWeatherData(data)
 
 		}
@@ -41,7 +35,6 @@ function currentWeather(coordinatesGiven) {
 
 function filterWeatherData(weatherData) {
 	//TO Narrow down to forecast results:
-	// weatherData.list
 	let weatherList = weatherData.list;
 	let fiveDayForecast = [
 		//Index Intervals of 7 will give you daily forecast per 3 hours
@@ -109,8 +102,6 @@ function filterWeatherData(weatherData) {
 function filterCurrentWeatherData (currentWeatherData) {
 	let dateConversion = new Date (currentWeatherData.dt * 1000)
 	dateConversion = dateConversion.toDateString()
-	console.log('Converted Date Test')
-	console.log(dateConversion);
 	let currentWeatherObject = {
 		date: dateConversion,
 		temp: currentWeatherData.main.temp,
@@ -122,6 +113,6 @@ function filterCurrentWeatherData (currentWeatherData) {
 		wind: currentWeatherData.wind.speed,
 		pressure: currentWeatherData.main.pressure
 	}
-	console.log(currentWeatherObject)
+
 	addCurrentWeather(currentWeatherObject);
 }
