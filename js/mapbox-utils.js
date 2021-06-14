@@ -51,6 +51,7 @@ function userClicksOnMapEvent (){
 		//CALL WEATHERMAP FUNCTION HERE AFTERWARDS
 		reverseGeocode(lonLat);
 		weatherMapUtils(lonLat);
+		currentWeather(lonLat);
 
 	})
 }
@@ -77,6 +78,7 @@ function geoCoderEventOnResult (geoCoderResult) {
 			.addTo(map);
 
 		weatherMapUtils(coordinates);
+		currentWeather(coordinates);
 		//Add Place Name to HTML using Geocode Data
 		let locationName = {
 			location: data.result.place_name
